@@ -1,0 +1,7 @@
+*.zip
+node_modules
+.vscode
+.serverless
+coverage
+stack.json
+

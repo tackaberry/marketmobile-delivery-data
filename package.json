@@ -1,0 +1,27 @@
+{
+  "name": "marketmobile-delivery-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@google/maps": "^1.1.3",
+    "@googlemaps/google-maps-services-js": "^3.1.16",
+    "axios": "^0.19.2",
+    "geolib": "^3.3.1",
+    "google-spreadsheet": "^3.0.10",
+    "googleapis": "^48.0.0",
+    "request": "^2.88.2",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.33.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "invoke": "serverless invoke local -f function -s prod --path event.json",
+    "deploy:dev": "serverless deploy -s dev",
+    "deploy:prod": "serverless deploy -s prod"
+  },
+  "author": "",
+  "license": "ISC"
+}

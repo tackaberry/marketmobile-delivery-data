@@ -1,0 +1,31 @@
+plugins:
+  - serverless-offline
+
+service: marketmobile-delivery-data # NOTE: update this with your service name
+
+custom:
+  EventsEnabled:
+    dev: false
+    prod: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage,'dev'}
+  region: ${opt:region,'us-east-1'}
+
+functions:
+  function:
+    handler: index.handler
+    name: ${self:service}-${self:provider.stage}
+    timeout: 60
+    environment:
+      NODE_ENV: ${self:provider.stage}
+      GOOGLE_MAPS_API: ${ssm:/marketmobile/google-maps-api-key~true}
+      GOOGLE_CREDENTIALS: ${ssm:/marketmobile/google-credentials~true}
+      GOOGLE_SHEETS_ID: ${ssm:/marketmobile/google-sheets-id}
+      REPLACE_ALL_DATA: false
+    events:
+      - schedule:
+          rate: rate(1 hour)
+          enabled: ${self:custom.EventsEnabled.${self:provider.stage}}
