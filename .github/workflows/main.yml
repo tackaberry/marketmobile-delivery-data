@@ -11,9 +11,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Install serverless
-        run: npm install -g serverless
-      - name: Run serverless deploy prod
-        run: npm run deploy:prod
-      - name: Run serverless deploy dev
-        run: npm run deploy:dev
+      - name: Install dependencies
+        run: npm install
+      - name: Deploy to Development Environment
+        uses: serverless/github-action@master
+        with:
+          args: deploy --stage development
