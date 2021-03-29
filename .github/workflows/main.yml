@@ -16,4 +16,8 @@ jobs:
       - name: Deploy to Development Environment
         uses: serverless/github-action@master
         with:
-          args: deploy --stage development
+          args: deploy --stage dev
+      - name: Deploy to Development Environment
+        uses: serverless/github-action@master
+        with:
+          args: deploy --stage prod
